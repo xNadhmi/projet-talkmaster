@@ -1,8 +1,9 @@
-@import "./variables";
-@import "./mixins";
+@use "./abstracts/index" as *;
+@use "./components/index" as *;
 
+// Global styles
 body {
-  margin: 0;
-  font-family: sans-serif;
-  background-color: #fafafa;
+	margin: 0;
+	font-family: $font-stack;
+	background-color: #fafafa;
 }
