@@ -1,0 +1,40 @@
+.planning-page {
+	padding: 2rem;
+
+	h2 {
+		margin-bottom: 1rem;
+	}
+}
+
+.filters {
+	display: flex;
+	gap: 1rem;
+	margin-bottom: 2rem;
+
+	select {
+		padding: 0.5rem;
+		border-radius: 4px;
+		border: 1px solid #ccc;
+	}
+}
+
+.talk-schedule {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.talk-card {
+	background-color: #f0f0f0;
+	padding: 1rem;
+	border-radius: 6px;
+	border: 1px solid #ddd;
+
+	h3 {
+		margin: 0 0 0.5rem;
+	}
+
+	p {
+		margin: 0.2rem 0;
+	}
+}

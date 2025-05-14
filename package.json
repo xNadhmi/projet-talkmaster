@@ -1,0 +1,15 @@
+{
+  "name": "projet-talkmaster-monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Projet TalkMaster fullstack",
+  "scripts": {
+    "install:all": "pnpm install -r",
+    "start:backend": "pnpm --filter backend start",
+    "start:frontend": "pnpm --filter frontend dev",
+    "dev": "concurrently \"pnpm run start:backend\" \"pnpm run start:frontend\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

@@ -1,0 +1,9 @@
+packages:
+  - backend
+  - frontend
+ignoredBuiltDependencies:
+  - '@parcel/watcher'
+  - bcrypt
+  - core-js
+  - core-js-pure
+  - esbuild
