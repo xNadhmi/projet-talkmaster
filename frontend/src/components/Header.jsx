@@ -1,8 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../store/AuthContext";
 
 export default function Header() {
 	const { user, logout } = useAuth();
+	const navigate = useNavigate();
+
+	const handleLogout = () => {
+		logout();
+		navigate("/dashboard");
+	};
 
 	return (
 		<header className="header">
@@ -11,16 +17,21 @@ export default function Header() {
 
 				{user?.role === "speaker" && (
 					<Link to="/dashboard/talks" style={{ marginLeft: "1rem" }}>
-						Gérer mes talks
+						Mes Talks
 					</Link>
 				)}
 			</nav>
 
-			{user && (
-				<button onClick={logout} style={{ marginLeft: "auto" }}>
-					Se déconnecter
-				</button>
-			)}
+			<div className="auth-buttons">
+				{user ? (
+					<button onClick={handleLogout}>Se déconnecter</button>
+				) : (
+					<>
+						<Link className="button" to="/login">Connexion</Link>
+						<Link className="button" to="/register">Inscription</Link>
+					</>
+				)}
+			</div>
 		</header>
 	);
 }

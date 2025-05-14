@@ -58,7 +58,7 @@ export default function DashboardPage() {
 
 	return (
 		<div className="planning-page">
-			<h2>Planning des Talks</h2>
+			<h1>Planning des Talks</h1>
 			<PlanningFilters filters={filters} onChange={handleFilterChange} />
 			<TalkSchedule talks={filteredTalks} />
 		</div>

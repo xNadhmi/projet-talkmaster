@@ -1,10 +1,14 @@
+@use "../abstracts/" as *;
+
 .header {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	background-color: #f5f5f5;
-	padding: 1rem 2rem;
-	border-bottom: 1px solid #ddd;
+	@include display-flex(row, space-between, center, 1rem);
+
+	width: 100%;
+	padding: 1rem;
+	border-radius: 1rem;
+	background-color: rgba(var(--color-white), 0.2);
+	backdrop-filter: blur(0.25rem) brightness(1);
+	box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.2);
 
 	nav {
 		display: flex;
@@ -12,7 +16,7 @@
 
 		a {
 			text-decoration: none;
-			color: #0057ff;
+			color: rgb(var(--color-white));
 			font-weight: bold;
 
 			&:hover {
@@ -21,16 +25,25 @@
 		}
 	}
 
-	button {
-		background-color: #e53935;
-		color: white;
-		border: none;
+	button, a.button {
+		--background-alpha: 0.7;
+		@include display-flex(row, center, center, 0.5rem);
+		
+		background-color: rgba(var(--color-red), var(--background-alpha));
+		color: rgb(var(--color-white));
 		padding: 0.5rem 1rem;
-		border-radius: 4px;
+		border: none;
+		border-radius: 0.5rem;
+		text-decoration: none;
 		cursor: pointer;
+		transition: background-color 0.3s ease-out;
 
 		&:hover {
-			background-color: #c62828;
+			--background-alpha: 1;
 		}
+	}
+
+	.auth-buttons {
+		@include display-flex(row, center, center, 0.5rem);
 	}
 }
