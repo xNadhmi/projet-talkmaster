@@ -3,7 +3,10 @@ import { AuthProvider } from "./store/AuthContext";
 import PrivateRoute from "./routes/PrivateRoute";
 import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
-import PublicSchedulePage from "./pages/PublicSchedulePage";
+import PublicSchedulePage from "./pages/DashboardPage";
+import TalksPage from "./pages/TalksPage";
+import PrivateLayout from "./layouts/PrivateLayout";
+
 
 function App() {
 	return (
@@ -16,7 +19,19 @@ function App() {
 						path="/dashboard"
 						element={
 							<PrivateRoute>
-								<DashboardPage />
+								<PrivateLayout>
+									<DashboardPage />
+								</PrivateLayout>
+							</PrivateRoute>
+						}
+					/>
+					<Route
+						path="/dashboard/talks"
+						element={
+							<PrivateRoute roles={["speaker"]}>
+								<PrivateLayout>
+									<TalksPage />
+								</PrivateLayout>
 							</PrivateRoute>
 						}
 					/>
