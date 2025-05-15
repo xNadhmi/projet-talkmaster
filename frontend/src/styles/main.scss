@@ -113,6 +113,7 @@ main {
 		position: relative;
 		flex: 1;
 		max-width: 50%;
+		min-width: 20rem;
 		padding: 1rem;
 		border-radius: 1rem;
 		color: rgb(var(--color-white));
@@ -215,6 +216,7 @@ button, a.button {
 	border-radius: 0.5rem;
 	color: rgb(var(--color-white));
 	background-color: rgba(var(--color-red), var(--background-alpha));
+	white-space: nowrap;
 	text-decoration: none;
 	cursor: pointer;
 	transition: background-color 0.3s ease-out;
@@ -253,7 +255,7 @@ input, textarea {
 	}
 }
 
-select {
+select, input[type="date"], input[type="time"] {
 	--background-alpha: 0.5;
 
 	padding: 0.5rem 1rem;

@@ -44,7 +44,7 @@ export default function DashboardPage() {
 		async function loadTalks() {
 			try {
 				const data = await fetchAllTalks();
-				setTalks(data.length > 0 ? data : mockTalks);
+				setTalks(Array.isArray(data) && data.length > 0 ? data : mockTalks);
 			} catch (err) {
 				console.error("API failed, using mock talks.", err);
 				setTalks(mockTalks);
