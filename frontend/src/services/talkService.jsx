@@ -13,3 +13,8 @@ export async function submitTalkRequest(talkData) {
 
 	return response.data;
 }
+
+export async function fetchAllTalks() {
+	const response = await axios.get(`${API_URL}/talks`);
+	return response.data;
+}

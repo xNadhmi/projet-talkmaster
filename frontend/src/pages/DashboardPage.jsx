@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import PlanningFilters from "../components/PlanningFilters";
 import TalkList from "../components/TalkList";
+import { fetchAllTalks } from "../services/talkService";
 
 const mockTalks = [
 	{
@@ -40,8 +41,17 @@ export default function DashboardPage() {
 	const [filters, setFilters] = useState({ day: "", room: "", level: "" });
 
 	useEffect(() => {
-		// TODO: Replace this with fetch later
-		setTalks(mockTalks);
+		async function loadTalks() {
+			try {
+				const data = await fetchAllTalks();
+				setTalks(data.length > 0 ? data : mockTalks);
+			} catch (err) {
+				console.error("API failed, using mock talks.", err);
+				setTalks(mockTalks);
+			}
+		}
+
+		loadTalks();
 	}, []);
 
 	const handleFilterChange = (field, value) => {
