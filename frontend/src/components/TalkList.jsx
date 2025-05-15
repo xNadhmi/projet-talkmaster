@@ -1,18 +1,15 @@
-import TalkItem from "./TalkItem";
+import TalkCard from "./TalkCard";
 
-export default function TalkList({ talks, onEdit, onDelete }) {
-	if (talks.length === 0) return <p>Vous n'avez pas encore de talks.</p>;
+export default function TalkSchedule({ talks }) {
+	if (talks.length === 0) {
+		return <p>Aucun talk ne correspond à vos filtres.</p>;
+	}
 
 	return (
-		<ul className="talk-list">
+		<div className="talk-list">
 			{talks.map((talk) => (
-				<TalkItem
-					key={talk.id}
-					talk={talk}
-					onEdit={() => onEdit(talk)}
-					onDelete={() => onDelete(talk.id)}
-				/>
+				<TalkCard key={talk.id} talk={talk} />
 			))}
-		</ul>
+		</div>
 	);
 }

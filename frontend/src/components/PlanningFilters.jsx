@@ -1,23 +1,31 @@
-export default function PlanningFilters({ filters, onChange }) {
+export default function PlanningFilters({ filters, onChange, talks }) {
+	// Dynamically extract filter values from current talks
+	const uniqueDates = [...new Set(talks.map((t) => t.date))].sort();
+	const uniqueRooms = [...new Set(talks.map((t) => t.room))].sort();
+	const uniqueLevels = [...new Set(talks.map((t) => t.level))].sort();
+
 	return (
 		<div className="filters">
-			<select value={filters.day} onChange={(e) => onChange("day", e.target.value)}>
-				<option value="">Tous les jours</option>
-				<option value="Jour 1">Jour 1</option>
-				<option value="Jour 2">Jour 2</option>
+			<select value={filters.date} onChange={(e) => onChange("date", e.target.value)}>
+				<option value="">Toutes les dates</option>
+				{uniqueDates.map((date) => (
+					<option key={date || `empty-date-${Math.random()}`} value={date}>{date || "(date vide)"}</option>
+				))}
+
 			</select>
 
 			<select value={filters.room} onChange={(e) => onChange("room", e.target.value)}>
 				<option value="">Toutes les salles</option>
-				<option value="Salle 1">Salle 1</option>
-				<option value="Salle 2">Salle 2</option>
+				{uniqueRooms.map((room) => (
+					<option key={room || `empty-room-${Math.random()}`} value={room}>{room || "(inconnu)"}</option>
+				))}
 			</select>
 
 			<select value={filters.level} onChange={(e) => onChange("level", e.target.value)}>
 				<option value="">Tous niveaux</option>
-				<option value="beginner">Débutant</option>
-				<option value="intermediate">Intermédiaire</option>
-				<option value="advanced">Avancé</option>
+				{uniqueLevels.map((level) => (
+					<option key={level || `empty-level-${Math.random()}`} value={level}>{level || "(non défini)"}</option>
+				))}
 			</select>
 		</div>
 	);

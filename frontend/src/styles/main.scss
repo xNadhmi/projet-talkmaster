@@ -20,8 +20,14 @@
 	--color-red-rgb:						rgb(255, 63, 108);
 	--color-red:								255, 63, 108;
 	
+	--color-green-rgb:					rgb(38, 228, 20);
+	--color-green:							38, 228, 20;
+	
 	--color-blue-rgb:						rgb(65, 68, 255);
 	--color-blue:								65, 68, 255;
+	
+	--color-yellow-rgb:					rgb(255, 252, 65);
+	--color-yellow:							255, 252, 65;
 
 	--color-purple-rgb:					rgb(35, 21, 60);
 	--color-purple:							35, 21, 60;
@@ -91,6 +97,114 @@ main {
 	height: 100%;
 	padding: 0 1rem;
 }
+
+
+.talk-list {
+	@include display-flex(row, center, flex-start, 1rem);
+	flex-direction: row;
+	flex-wrap: wrap;
+	
+	.talk-card {
+		--shadow-color: 0,0,0;
+		--shadow-alpha: 1;
+		
+		@include display-flex(column, flex-start, flex-start, 0.5rem);
+		
+		position: relative;
+		flex: 1;
+		max-width: 50%;
+		padding: 1rem;
+		border-radius: 1rem;
+		color: rgb(var(--color-white));
+		background: #000 url(../assets/card-background.jpg) left center/auto no-repeat local;
+		text-shadow: 0 0 0.5rem rgba(0,0,0, 1);
+		overflow: hidden;
+		cursor: pointer;
+
+		&:hover, &:active {
+			--shadow-alpha: 0.5;
+			--shadow-color: var(--color-red);
+		}
+
+		> * {
+			z-index: 1;
+		}
+
+		&::before {
+			position: absolute;
+			content: "";
+			inset: 0;
+			background-color: rgb(var(--shadow-color));
+			mask-image: linear-gradient(to top, white, transparent);
+			z-index: 0;
+			opacity: var(--shadow-alpha);
+			transition:
+				background-color 0.3s ease-out,
+				opacity 0.3s ease-out,
+			;
+		}
+	}
+
+	.status {
+		--status-color: var(--color-white);
+		
+		font-size: 0.9em;
+		font-weight: 500;
+		padding: 0.25rem 0.5rem;
+		border-radius: 0.25rem;
+		width: fit-content;
+		color: rgba(var(--status-color));
+		background-color: rgba(var(--status-color), 0.2);
+
+		&.en-attente {
+			--status-color: var(--color-yellow);
+		}
+
+		&.accepté {
+			--status-color: var(--color-green);
+		}
+
+		&.refusé {
+			--status-color: var(--color-red);
+		}
+	}
+}
+
+.filters {
+	@include display-flex(row, center, center, 1rem);
+	flex-wrap: wrap;
+
+	width: 100%;
+	margin-bottom: 1rem;
+
+	select {
+		padding: 0.5rem 1rem;
+		border-radius: 2rem;
+		border: none;
+		outline: transparent;
+		color: rgb(var(--color-white));
+		background-color: rgb(var(--color-white), 0.2);
+		backdrop-filter: blur(0.25rem) brightness(1);
+
+		option {
+			background-color: rgb(var(--color-black));
+		}
+	}
+
+	button.filter {
+		padding: 0.5rem 1rem;
+		border-radius: 2rem;
+		border: none;
+		outline: transparent;
+		color: rgb(var(--color-white));
+		background-color: rgb(var(--color-white), 0.2);
+		backdrop-filter: blur(0.25rem) brightness(1);
+
+		&[selected] {
+			background-color: rgb(var(--color-red), 0.7);
+		}
+	}
+}
 	
 button, a.button {
 	--background-alpha: 0.7;
@@ -114,7 +228,7 @@ button, a.button {
 	}
 }
 
-input {
+input, textarea {
 	--background-alpha: 0.3;
 
 	padding: 0.5rem 1rem;
@@ -155,5 +269,31 @@ select {
 	}
 	&:focus {
 		--background-alpha: 0.9;
+	}
+}
+
+details {
+	--background-alpha: 0.4;
+
+	border-radius: 1rem;
+	color: rgb(var(--color-black));
+	background-color: rgba(var(--color-white), var(--background-alpha));
+	transition: background-color 0.3s ease-out;
+
+	&:hover {
+		--background-alpha: 0.5;
+	}
+
+	> summary {
+		padding: 0.5rem 1rem;
+		font-size: 1.1em;
+		font-weight: 600;
+		cursor: pointer;
+	}
+
+	> .content {
+		@include display-flex(column, center, stretch, 0);
+
+		padding: 1rem;
 	}
 }
