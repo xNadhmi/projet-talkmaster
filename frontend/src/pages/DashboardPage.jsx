@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import PlanningFilters from "../components/PlanningFilters";
-import TalkSchedule from "../components/TalkSchedule";
+import TalkList from "../components/TalkList";
 
 const mockTalks = [
 	{
@@ -60,7 +60,7 @@ export default function DashboardPage() {
 		<div className="planning-page">
 			<h1>Planning des Talks</h1>
 			<PlanningFilters filters={filters} onChange={handleFilterChange} />
-			<TalkSchedule talks={filteredTalks} />
+			<TalkList talks={filteredTalks} />
 		</div>
 	);
 }

@@ -1,36 +1,60 @@
-import { useState } from "react";
-import TalkForm from "../components/TalkForm";
+import { useState, useEffect } from "react";
+import TalkSubmissionForm from "../components/TalkSubmissionForm";
 import TalkList from "../components/TalkList";
+
+const mockTalks = [
+	{
+		id: 1,
+		title: "React Magic",
+		description: "Advanced topics in React",
+		room: "Salle 1",
+		date: "2025-05-18",
+		time: "10:00",
+		status: "en attente"
+	},
+	{
+		id: 2,
+		title: "NodeJS Performance",
+		description: "Best practices",
+		room: "Salle 3",
+		date: "2025-05-19",
+		time: "13:00",
+		status: "accepté"
+	}
+];
 
 export default function TalksPage() {
 	const [talks, setTalks] = useState([]);
-	const [editingTalk, setEditingTalk] = useState(null);
+	const [filter, setFilter] = useState("all");
 
-	const handleCreateOrUpdate = (talk) => {
-		if (talk.id) {
-			setTalks((prev) =>
-				prev.map((t) => (t.id === talk.id ? talk : t))
-			);
-		} else {
-			talk.id = Date.now();
-			setTalks((prev) => [...prev, talk]);
-		}
-		setEditingTalk(null);
-	};
+	useEffect(() => {
+		// Replace with API call later
+		setTalks(mockTalks);
+	}, []);
 
-	const handleEdit = (talk) => {
-		setEditingTalk(talk);
-	};
-
-	const handleDelete = (id) => {
-		setTalks((prev) => prev.filter((t) => t.id !== id));
-	};
+	const filteredTalks = talks.filter((talk) => {
+		if (filter === "all") return true;
+		return talk.status === filter;
+	});
 
 	return (
 		<div className="talks-page">
-			<h2>Mes Talks</h2>
-			<TalkForm onSubmit={handleCreateOrUpdate} editingTalk={editingTalk} />
-			<TalkList talks={talks} onEdit={handleEdit} onDelete={handleDelete} />
+			<h1>Mes Talk</h1>
+			<details className="accordion">
+				<summary>Soumettre un nouveau talk</summary>
+				<div className="content">
+					<TalkSubmissionForm setTalks={setTalks} />
+				</div>
+			</details>
+
+			<div className="filters">
+				<button className="filter" onClick={() => setFilter("all")} selected={filter === "all" ? "true" : undefined}>Tous</button>
+				<button className="filter" onClick={() => setFilter("en attente")} selected={filter === "en attente" ? "true" : undefined}>En attente</button>
+				<button className="filter" onClick={() => setFilter("accepté")} selected={filter === "accepté" ? "true" : undefined}>Acceptés</button>
+				<button className="filter" onClick={() => setFilter("refusé")} selected={filter === "refusé" ? "true" : undefined}>Refusés</button>
+			</div>
+
+			<TalkList talks={filteredTalks} />
 		</div>
 	);
 }
