@@ -101,7 +101,7 @@ export default function TalkSubmissionForm({ setTalks }) {
 					onChange={handleChange}
 					required
 					min="09:00"
-					max="18:59"
+					max="19:00"
 				/>
 			</div>
 

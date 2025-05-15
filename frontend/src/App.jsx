@@ -5,6 +5,7 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import DashboardPage from "./pages/DashboardPage";
 import TalksPage from "./pages/TalksPage";
+import ManageTalksPage from "./pages/ManageTalksPage";
 import PrivateLayout from "./layouts/PrivateLayout";
 import VantaBackground from "./components/VantaBackground";
 
@@ -43,6 +44,16 @@ function App() {
 							<PrivateRoute roles={["speaker"]}>
 								<PrivateLayout>
 									<TalksPage />
+								</PrivateLayout>
+							</PrivateRoute>
+						}
+					/>
+					<Route
+						path="/dashboard/manage"
+						element={
+							<PrivateRoute roles={["organizer"]}>
+								<PrivateLayout>
+									<ManageTalksPage />
 								</PrivateLayout>
 							</PrivateRoute>
 						}

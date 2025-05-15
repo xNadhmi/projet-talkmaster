@@ -16,8 +16,14 @@ export default function Header() {
 				<Link to="/dashboard">Planning</Link>
 
 				{user?.role === "speaker" && (
-					<Link to="/dashboard/talks" style={{ marginLeft: "1rem" }}>
+					<Link to="/dashboard/talks">
 						Mes Talks
+					</Link>
+				)}
+
+				{user?.role === "organizer" && (
+					<Link to="/dashboard/manage">
+						Gérer les Talks
 					</Link>
 				)}
 			</nav>

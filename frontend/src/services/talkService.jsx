@@ -16,5 +16,19 @@ export async function submitTalkRequest(talkData) {
 
 export async function fetchAllTalks() {
 	const response = await axios.get(`${API_URL}/talks`);
-	return response.data;
+	return Array.isArray(response.data) ? response.data : [];
+}
+
+export async function updateTalkStatus(id, status) {
+	const token = localStorage.getItem("token");
+	return await axios.patch(`${API_URL}/talks/${id}/status`, { status }, {
+		headers: { Authorization: `Bearer ${token}` }
+	});
+}
+
+export async function assignTalkSchedule(id, { room, date, time }) {
+	const token = localStorage.getItem("token");
+	return await axios.patch(`${API_URL}/talks/${id}/schedule`, { room, date, time }, {
+		headers: { Authorization: `Bearer ${token}` }
+	});
 }
