@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import { AuthProvider } from "./store/AuthContext";
 import PrivateRoute from "./routes/PrivateRoute";
 import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
 import DashboardPage from "./pages/DashboardPage";
 import TalksPage from "./pages/TalksPage";
 import PrivateLayout from "./layouts/PrivateLayout";
@@ -16,7 +17,18 @@ function App() {
 			<AuthProvider>
 				<Routes>
 					<Route path="/" element={<Navigate to="/dashboard" />} />
-					<Route path="/login" element={<LoginPage />} />
+					<Route path="/login" element={
+							<PrivateLayout>
+								<LoginPage />
+							</PrivateLayout>
+						}
+					/>
+					<Route path="/register" element={
+							<PrivateLayout>
+								<RegisterPage />
+							</PrivateLayout>
+						}
+					/>
 					<Route
 						path="/dashboard"
 						element={

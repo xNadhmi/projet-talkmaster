@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { loginRequest } from "../services/authService";
 
 const AuthContext = createContext();
 
@@ -14,21 +15,36 @@ export function AuthProvider({ children }) {
 		}
 	}, []);
 
-	const login = (role = "speaker") => {
-		const userData = { name: "Test User", role };
-		setUser(userData);
-		localStorage.setItem("user", JSON.stringify(userData));
+	const login = async (email, password) => {
+		const { token, user } = await loginRequest(email, password);
+		localStorage.setItem("user", JSON.stringify(user));
+		localStorage.setItem("token", token);
+		setUser(user);
 		navigate("/dashboard");
 	};
 
 	const logout = () => {
 		setUser(null);
 		localStorage.removeItem("user");
-		navigate("/login");
+		localStorage.removeItem("token");
+		navigate("/dashboard");
 	};
+	
+	const loginDev = (role) => {
+		const userData = {
+			name: "Dev User",
+			role,
+			email: `${role}@example.com`
+		};
+		localStorage.setItem("user", JSON.stringify(userData));
+		localStorage.setItem("token", "dev-token");
+		setUser(userData);
+		navigate("/dashboard");
+	};
+	
 
 	return (
-		<AuthContext.Provider value={{ user, login, logout }}>
+		<AuthContext.Provider value={{ user, login, loginDev, logout }}>
 			{children}
 		</AuthContext.Provider>
 	);
