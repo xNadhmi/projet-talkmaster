@@ -91,3 +91,69 @@ main {
 	height: 100%;
 	padding: 0 1rem;
 }
+	
+button, a.button {
+	--background-alpha: 0.7;
+	@include display-flex(row, center, center, 0.5rem);
+	
+	padding: 0.5rem 1rem;
+	border: none;
+	border-radius: 0.5rem;
+	color: rgb(var(--color-white));
+	background-color: rgba(var(--color-red), var(--background-alpha));
+	text-decoration: none;
+	cursor: pointer;
+	transition: background-color 0.3s ease-out;
+
+	&:hover, &:active {
+		--background-alpha: 1;
+	}
+
+	&:focus-visible {
+		outline: 4px solid rgba(var(--color-red), 0.4);
+	}
+}
+
+input {
+	--background-alpha: 0.3;
+
+	padding: 0.5rem 1rem;
+	border: none;
+	border-radius: 0.5rem;
+	outline: 0px solid transparent;
+	color: rgb(var(--color-black));
+	background-color: rgba(var(--color-white), var(--background-alpha));
+	transition: background-color 0.3s ease-out;
+
+	&:hover {
+		--background-alpha: 0.6;
+	}
+	&:focus {
+		--background-alpha: 0.8;
+	}
+
+	&::placeholder {
+		color: rgb(var(--color-black));
+		opacity: 0.5;
+		font-size: 0.8em;
+	}
+}
+
+select {
+	--background-alpha: 0.5;
+
+	padding: 0.5rem 1rem;
+	border: none;
+	border-radius: 0.5rem;
+	outline: 0px solid transparent;
+	color: rgb(var(--color-black));
+	background-color: rgba(var(--color-white), var(--background-alpha));
+	transition: background-color 0.3s ease-out;
+
+	&:hover {
+		--background-alpha: 0.7;
+	}
+	&:focus {
+		--background-alpha: 0.9;
+	}
+}
