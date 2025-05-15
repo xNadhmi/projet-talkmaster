@@ -1,36 +1,43 @@
 import { useState } from "react";
-import { useAuth } from "../store/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { registerRequest } from "../services/authService";
 
-const SHOW_DEV_BUTTONS = true;
-
-export default function LoginPage() {
-	const { login, loginDev } = useAuth();
+export default function RegisterPage() {
+	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [role, setRole] = useState("speaker");
 	const [error, setError] = useState("");
+	const navigate = useNavigate();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setError("");
-	
-		if (!email || !password) {
-			setError("Merci de remplir tous les champs.");
+
+		if (!name || !email || !password) {
+			setError("Tous les champs sont requis.");
 			return;
 		}
-	
+
 		try {
-			await login(email, password);
+			await registerRequest({ name, email, password, role });
+			navigate("/login");
 		} catch (err) {
 			setError(err.toString());
 		}
 	};
-	
 
 	return (
 		<div className="login-page">
 			<div className="login-card">
-				<h1>Connexion</h1>
+				<h1>Inscription</h1>
 				<form onSubmit={handleSubmit}>
+					<input
+						type="text"
+						placeholder="Nom"
+						value={name}
+						onChange={(e) => setName(e.target.value)}
+					/>
 					<input
 						type="email"
 						placeholder="Email"
@@ -43,20 +50,13 @@ export default function LoginPage() {
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
 					/>
-					<button type="submit">Se connecter</button>
+					<select value={role} onChange={(e) => setRole(e.target.value)}>
+						<option value="speaker">Conférencier</option>
+						<option value="organizer">Organisateur</option>
+					</select>
+					<button type="submit">Créer un compte</button>
 				</form>
 
-				{SHOW_DEV_BUTTONS && (
-					<div className="dev-buttons">
-						<p>⛭ Dev testing only:</p>
-						<button onClick={() => loginDev("speaker")}>
-							Login as Speaker
-						</button>
-						<button onClick={() => loginDev("organizer")}>
-							Login as Organizer
-						</button>
-					</div>
-				)}
 
 				{error && (
 					<div className="error-message">

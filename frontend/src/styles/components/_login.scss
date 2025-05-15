@@ -1,0 +1,68 @@
+@use "../abstracts/" as *;
+
+.login-page {
+	@include display-flex(column, center, center, 1rem);
+
+	position: relative;
+	min-width: 30%;
+	height: 100%;
+	
+	.login-card {
+		@include display-flex(column, flex-start, center, 1rem);
+
+		position: relative;
+		width: 100%;
+		max-height: 100%;
+		padding: 1rem 2rem;
+		border-radius: 1rem;
+		background-color: rgba(var(--color-white), 0.2);
+		backdrop-filter: blur(0.25rem) brightness(1);
+		box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.2);
+
+		h1 {
+			margin-bottom: 1rem;
+			color: rgb(var(--color-red));
+			text-shadow: 0 0 2rem rgba(0,0,0, 1);
+		}
+
+		form {
+			@include display-flex(column, flex-start, stretch, 1rem);
+			
+			width: 100%;
+
+			input {
+				width: 100%;
+			}
+		}
+
+		.dev-buttons {
+			@include display-flex(column, flex-start, stretch, 0.5rem);
+
+			margin-top: 1rem;
+			font-size: 0.7em;
+			
+			button {
+				color: rgb(var(--color-black));
+				background-color: rgba(var(--color-white), 0.8);
+
+				&:hover {
+					background-color: #ccc;
+				}
+			}
+		}
+		
+		.error-message {
+			position: absolute;
+			bottom: -1rem;
+			translate: 0 100%;
+			width: 100%;
+			padding: 0.75rem 1rem;
+			border-radius: 0.75rem;
+			color: rgb(var(--color-white));
+			background-color: rgba(var(--color-red), 0.5);
+			backdrop-filter: blur(0.25rem) brightness(1);
+			box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.2);
+			text-align: center;
+		}
+	}
+}
