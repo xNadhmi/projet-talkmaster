@@ -7,8 +7,9 @@ export default function TalkSubmissionForm({ setTalks }) {
 		description: "",
 		room: "1",
 		date: "",
-		time: "09:00"
-	});
+		time: "09:00",
+		level: "beginner"
+	});	
 	const [error, setError] = useState("");
 	const [success, setSuccess] = useState("");
 
@@ -33,8 +34,9 @@ export default function TalkSubmissionForm({ setTalks }) {
 			description: form.description,
 			room: `Salle ${form.room}`,
 			date: form.date,
-			time: form.time
-		};
+			time: form.time,
+			level: form.level
+		};		
 
 		try {
 			const savedTalk = await submitTalkRequest(newTalk);
@@ -45,8 +47,9 @@ export default function TalkSubmissionForm({ setTalks }) {
 				description: "",
 				room: "1",
 				date: "",
-				time: "09:00"
-			});
+				time: "09:00",
+				level: "beginner"
+			});			
 		} catch (err) {
 			setError(err.response?.data?.message || "Erreur serveur.");
 		}
@@ -77,6 +80,13 @@ export default function TalkSubmissionForm({ setTalks }) {
 					<option value="4">Salle 4</option>
 					<option value="5">Salle 5</option>
 				</select>
+				<select name="level" value={form.level} onChange={handleChange}>
+					<option value="beginner">Débutant</option>
+					<option value="intermediate">Intermédiaire</option>
+					<option value="advanced">Avancé</option>
+				</select>
+			</div>
+			<div className="row">
 				<input
 					type="date"
 					name="date"
