@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
-import * as userService from '../services/user.service';
-import { UserCreationAttributes } from '../types';
+import * as userService from '../services/user.service.js';
+import { UserCreationAttributes } from '../types/index.js';
 import jwt from 'jsonwebtoken';
-import { JWT_SECRET } from '../config'; 
-import { ApiError } from '../utils/ApiError';
+import { JWT_SECRET } from '../config/index.js'; 
+import { ApiError } from '../utils/ApiError.js';
 
 
 

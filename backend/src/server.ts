@@ -1,6 +1,6 @@
-import app from './app';
-import { connectDB, PORT, NODE_ENV } from './config';
-import logger from './utils/logger';
+import app from './app.js';
+import { connectDB, PORT, NODE_ENV } from './config/index.js';
+import logger from './utils/logger.js';
 
 const startServer = async () => {
    try {

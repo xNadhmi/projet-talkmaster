@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-export { default as connectDB } from './database';
+export { default as connectDB } from './database.js';
 
 export const NODE_ENV: string = process.env.NODE_ENV || 'development';
 export const PORT: string | number = process.env.PORT || 5000;

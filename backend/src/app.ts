@@ -1,9 +1,9 @@
 import express, { Express, Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import mainApiRouter from './routes';
-import logger from './utils/logger';
-import { ErrorResponse } from './types';
+import mainApiRouter from './routes/index.js';
+import logger from './utils/logger.js';
+import { ErrorResponse } from './types/index.js';
 
 dotenv.config();
 

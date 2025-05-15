@@ -1,1 +1,0 @@
-   cd /Applications/Files/Hetic/MT5/projet-talkmaster

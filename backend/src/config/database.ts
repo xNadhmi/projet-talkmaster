@@ -1,6 +1,6 @@
 import mysql, { RowDataPacket, FieldPacket, QueryResult } from 'mysql2/promise';
-import { DATABASE_URL, NODE_ENV } from './index';
-import logger from '../utils/logger';
+import { DATABASE_URL, NODE_ENV } from './index.js';
+import logger from '../utils/logger.js';
 
 
 let pool: mysql.Pool | null = null;

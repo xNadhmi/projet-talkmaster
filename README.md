@@ -130,9 +130,7 @@ Avant de commencer, assurez-vous d'avoir installé les éléments suivants sur v
 Pour lancer l'application complète en mode production avec Docker (si vous avez un `Dockerfile` pour le backend et le frontend et un `docker-compose.prod.yml` ou une configuration de production dans `docker-compose.yml`) :
 
 ```bash
-# Exemple (à adapter à votre configuration Docker de production)
 docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --build -d
-# Ou si votre docker-compose.yml principal gère déjà la prod :
 # docker-compose up --build -d
 ```
 [**Précisez ici les étapes exactes pour lancer en production si elles diffèrent ou si des services supplémentaires sont nécessaires.**]
@@ -176,7 +174,7 @@ Pour exécuter les tests :
 
 *   **Exécuter tous les tests depuis la racine (si configuré) :**
     ```bash
-    # pnpm run test # Si vous avez un script global dans le package.json racine
+    # pnpm run test
     ```
 
 ## CI/CD
