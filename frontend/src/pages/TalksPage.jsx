@@ -20,6 +20,16 @@ const mockTalks = [
 		date: "2025-05-19",
 		time: "13:00",
 		status: "accepté"
+	},
+	{
+		id: 3,
+		title: "Prisma ORM Tips",
+		subject: "Databases",
+		description: "How to master Prisma with MySQL",
+		room: "Salle 3",
+		date: "2025-05-19",
+		time: "13:00",
+		status: "refusé"
 	}
 ];
 
