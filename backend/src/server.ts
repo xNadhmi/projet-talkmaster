@@ -9,6 +9,7 @@ const startServer = async () => {
       app.listen(PORT, () => {
          logger.info(`Backend server started on port ${PORT}`);
          logger.info(`Environment: ${NODE_ENV}`);
+         console.log(`[INFO] Server running at http://localhost:${PORT}`);
       });
    } catch (error) {
       logger.error('Failed to start server:', error);
