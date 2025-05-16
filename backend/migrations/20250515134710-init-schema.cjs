@@ -16,10 +16,9 @@ module.exports = {
       id:    { type: Sequelize.INTEGER.UNSIGNED, autoIncrement: true, primaryKey: true },
       name:  { type: Sequelize.ENUM('en_attente','accepté','refusé','planifié'), allowNull: false, unique: true },
     })
-    // … créez ici les tables rooms, slots, talks, favorites, etc.
   },
 
-  async down (queryInterface, Sequelize) {
+  async down (queryInterface) {
     await queryInterface.dropTable('favorites')
     await queryInterface.dropTable('talks')
     await queryInterface.dropTable('slots')

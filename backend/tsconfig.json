@@ -16,10 +16,14 @@
     "rootDir": "./src",
 
     "sourceMap": true,
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/types"
+    ]
   },
   "include": ["src/**/*", "sequelize.config.js"],
   "exclude": ["node_modules", "dist"],
-  "ts-node": {
+    "ts-node": {
     "esm": true
   }
 }
