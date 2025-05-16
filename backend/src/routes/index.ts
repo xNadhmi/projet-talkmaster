@@ -1,6 +1,8 @@
 import { Router, Request, Response } from 'express';
 import authRoutes from './auth.routes.js';
+import talkRoutes from './talk.routes.js';
 import userRoutes from './user.routes.js';
+import slotRoutes from './slot.routes.js';
 
 
 const router = Router();
@@ -18,6 +20,8 @@ router.get('/health', (req: Request, res: Response) => {
 
 router.use('/auth', authRoutes); 
 router.use('/users', userRoutes); 
+router.use('/talks', talkRoutes);
+router.use('/slots', slotRoutes);
 
 
 router.get('/', (req: Request, res: Response) => {
